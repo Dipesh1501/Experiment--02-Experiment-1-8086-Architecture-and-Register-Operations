@@ -166,7 +166,29 @@ Write an 8086 assembly language program to exchange the contents of two
 
 ### Assembly Program
 
- 
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+    VALUE1 DW 1111H
+    VALUE2 DW 2222H
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+
+    MOV AX, VALUE1
+    MOV BX, VALUE2
+
+    MOV VALUE1, BX
+    MOV VALUE2, AX
+
+    MOV AH, 4CH
+    INT 21H
+
+MAIN ENDP
+END MAIN
 
 ### Expected Result
 
@@ -177,8 +199,11 @@ Write an 8086 assembly language program to exchange the contents of two
 
 ### Explanation
 
-  
-------------------------------------------------------------------------
+MOV AX, VALUE1 – Loads the value of VALUE1 into AX.
+MOV BX, VALUE2 – Loads the value of VALUE2 into BX.
+MOV VALUE1, BX – Stores the contents of BX into VALUE1.
+MOV VALUE2, AX – Stores the contents of AX into VALUE2.
+MOV AH, 4CH and INT 21H – Terminates the program.
 
 ## Procedure
 
@@ -191,8 +216,7 @@ Write an 8086 assembly language program to exchange the contents of two
 7.  Record the observed results and compare them with the expected
     results.
 ## Screenshot of the results 
-
-
+<img width="1437" height="693" alt="image" src="https://github.com/user-attachments/assets/d9e36e3d-ab10-4e21-a175-8ccd8fa7cc06" />
 
 ## Result
 
